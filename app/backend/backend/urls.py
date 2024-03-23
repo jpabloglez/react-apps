@@ -16,12 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from files.views import ImageUploadView
+from music.views import top_artists
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('users.urls')),
     path('files/', ImageUploadView.as_view()),
+    path('music/', top_artists),
 ]
 
 from django.conf.urls.static import static

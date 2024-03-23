@@ -1,28 +1,28 @@
 version: "3.4"
 services:
 
-  db-xrays:
+  db-react:
     image: postgres:12.2
-    container_name: db-xrays
+    container_name: db-react
     ports:
       - 5444:5432
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+      POSTGRES_USER: $POSTGRES_USER
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+      POSTGRES_DB: $POSTGRES_DB
     volumes:
-      - ./data/db:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
     networks:
        - app-network 
 
-  backend-xrays:
+  backend-react:
     build: 
       context: .
       dockerfile: ./compose/Dockerfile.backend
-    container_name: backend-xrays
-    image: backend-xrays
+    container_name: backend-react
+    image: backend-react
     depends_on:
-      - db-xrays      
+      - db-react     
     ports:
       - 3080:3080
     volumes:
@@ -33,12 +33,12 @@ services:
     networks:
        - app-network
 
-  frontend-xrays:
+  frontend-react:
     build: 
       context: .
       dockerfile: ./compose/Dockerfile.frontend
-    container_name: frontend-xrays
-    image: frontend-xrays
+    container_name: frontend-react
+    image: frontend-react
     ports:
       - 3000:3000
     volumes:
@@ -51,6 +51,7 @@ services:
 
 volumes:
   shared_volume:
+  pgdata:
 
 networks:
   app-network:

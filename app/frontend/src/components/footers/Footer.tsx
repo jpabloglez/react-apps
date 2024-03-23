@@ -12,7 +12,7 @@ export default function Footer({}) {
             className="w-10 h-10 text-white p-2 bg-indigo-100 rounded-2"
             viewBox="0 0 975.036 975.036"
           ></svg>
-          <span className="ml-3 text-xl">COVID-xr</span>
+          <span className="ml-3 text-xl">@Github</span>
         </a>
         {/*}
         <p className="text-sm text-gray-500 sm:ml-6 sm:mt-0 mt-4 justify-end">

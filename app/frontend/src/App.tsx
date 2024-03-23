@@ -1,33 +1,36 @@
 import { useState } from "react";
 import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Navbar from "./components/navbars/Navbar";
 import Footer from "./components/footers/Footer";
-import ImageUpload from './components/uploader/ImageUploader';
+import Cards from "./components/cards/Cards";
+import TodoList from "./components/todolist/ToDoList";
+import About from "./components/about/About";
+import Gallery from "./components/gallery/Gallery";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <div className="container mx-auto border-solid border-2 rounded-lg">
-      <header>
-        <Navbar></Navbar>
-      </header>
+    <Router>
+      {/* Navigation bar */}
+      <Navbar />
 
-
-      {/* Image Upload */}
-      <div className="flex items p-4 bg-transparent min-h-screen self-auto">
-        <div className="bg-white shadow rounded self-auto  p-4 m-4">
-          <section id="imageupload">
-            <ImageUpload />
-          </section>ç
-        </div>
+      <div className="container mx-auto border-solid border-2 rounded-lg">
+        <Routes>
+          <Route path="/about" element={<About />} />
+          <Route path="/todolist" element={<TodoList />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/" element={<Cards />} />
+        </Routes>
       </div>
 
-
-      <Footer></Footer>
-    </div>
+      {/* Footer */}
+      <Footer />
+    </Router>
   );
 }
+
 
 export default App;
